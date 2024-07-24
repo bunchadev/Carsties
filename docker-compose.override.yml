@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  auctiondb:
+    container_name: auctiondb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgrespw
+      - POSTGRES_DB=AuctionDb
+    restart: always
+    ports:
+        - "5432:5432"
+    volumes:
+      - postgres_auction:/var/lib/postgresql/data/ 
