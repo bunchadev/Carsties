@@ -11,4 +11,26 @@ services:
     ports:
         - "5432:5432"
     volumes:
-      - postgres_auction:/var/lib/postgresql/data/ 
+      - postgres_auction:/var/lib/postgresql/data/
+      
+  searchdb:
+    container_name: searchdb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=mongopw
+    restart: always
+    ports:
+        - 27017:27017
+    volumes:
+      - mongo_search:/var/lib/mongodb/data/
+      
+  messagebroker:
+    container_name: messagebroker
+    hostname: auction-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=trung
+      - RABBITMQ_DEFAULT_PASS=trung
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672" 

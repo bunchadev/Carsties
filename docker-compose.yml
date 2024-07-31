@@ -4,5 +4,12 @@ services:
   auctiondb:
     image: postgres
 
+  searchdb:
+    image: mongo
+
+  messagebroker:
+    image: rabbitmq:management
+
 volumes:
   postgres_auction:
+  mongo_search:
